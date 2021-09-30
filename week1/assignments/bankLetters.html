@@ -8,15 +8,16 @@
                 width: 400px;
                 border: black 1px solid;
                 padding: 10px;
+                margin-bottom: 10px;
             }
         </style>
     </head>
     <body>
-        <div id='letterDiv'></div>
+        <div id='letterDiv'> </div>
     </body>
     <script>
         var bankName = 'CashMoney Bank'
-        let letterText = ''
+        let lettertext= "";
 
         const customers = [ 
             { fname: 'Brianna', balance: -54.99, rate: 2.7 },
@@ -30,6 +31,28 @@
             { fname: 'Petra', balance: 500.35, rate: 4.9 },
             { fname: 'Reggie', balance: 0, rate: 7.2 }
         ]
+for (let i = 0; i < customers.length; i++) {
+    lettertext += `<div class='letter'>`
+switch (true){
+
+    case (customers[i].balance < 0):
+        lettertext += "Hello " +  `${customers[i].fname}` + ", this is an attempt to collect a debt owed to " +  `${bankName}` + ". Your account is past due by the amount of " + `${customers[i].balance}`+".";
+    
+    break; 
+
+    case (customers[i].balance == 0):
+        lettertext += "Hello " +  `${customers[i].fname}` + ", greetings from" + `${bankName}` + ". Your balance is current. No need for action until next month.";
+    break;
+
+    case (customers[i].balance > 0):
+            lettertext += "Hello " +  `${customers[i].fname}` + ", greetings from " + `${bankName}` + ". Because you are such a great customer, we're lowering your interest rate to " + `${customers[i].rate}`+ "%.";
+                    
+}
+    lettertext += ` </div>`
+}
+
+document.getElementById("letterDiv").innerHTML = lettertext;
+
         // Create a loop that iterates through the customers array. Based on the customer's balance, create a personalized copy 
         // of the appropriate letter text from below. Each letter should be contained within a div with the style of 'letter'.
 
@@ -38,6 +61,6 @@
         // Hello [fname], greetings from [bankName]. Because you are such a great customer, we're lowering your interest rate to $[rate]%. 
 
         // Display all these letters in the letterDiv element.
-
+        
     </script>
 </html>
