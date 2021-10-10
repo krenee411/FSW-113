@@ -1,41 +1,46 @@
-// modify this script to populate the month select you create in the HTML page from an array of month names
-// you can use either a for loop or an array.map to populate the select. remember that while arrays start with 
-// zero, month numbers go from 1-12
+var monthName = ["January", "February" , "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+var options = monthName.map((month, index) =>
+    `<option value = ${index + 1}> ${month}</option>`
+)
+document.getElementById("month").innerHTML = options
 
-// modify this script to run a function called printCalendar() when the user clicks the "Go" button
+document.getElementById("printCalendar").addEventListener("click", function() {printCalendar()}
+)
 
-// modify this script to use the first day of the month the user selects in place of the const today 
 
-const today = new Date('5/1/2021')
-const month = today.getMonth()
+function printCalendar(){
+    document.getElementById("calendarDays").innerHTML = ""
+    const monthNumber = document.getElementById("month").value
+    const yearNumber = document.getElementById("year").value
+    const firstDay = document.getElementById(`${monthNumber}/1/${yearNumber}`)
+    const calDate = new Date(firstDay)
+
 let days
-switch (month) {
-    case 1:
+switch (monthNumber) {
+    case 1: 
         days = 28
         break
     case 3:
-    case 5:
-    case 8: 
+    case 5: 
+    case 8:
     case 10:
         days = 30
         break
     default:
         days = 31
 }
-    
-let x
-const weekday = today.getDay()
-for (x = 0; x < weekday; x++){
-    document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
+let x 
+const weekday = calDate.getDay()
+for (x=0; x < weekday; x++){
+    document.getElementById('calendarDays').innerHTML += "<div class = 'blankDay'>&nbsp;</div>"
 }
-
 let dt = 0
 do {
     dt++
-    document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div`
+    document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div>`
 } while ( dt < days)
 
-const monthName = today.toLocaleDateString('default', {month:'long'})
+const monthNames = today.toLocaleDateString('default', {month:'long'})
 const year = today.getFullYear()
 document.querySelector('.calendarTitle').innerText = `${monthName} ${year}`
 
@@ -45,3 +50,10 @@ while ( y < remainder) {
     document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
     y++
 }
+}
+
+
+
+
+
+
