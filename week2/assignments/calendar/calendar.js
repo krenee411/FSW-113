@@ -2,18 +2,24 @@ var monthName = ["January", "February" , "March", "April", "May", "June", "July"
 var options = monthName.map((month, index) =>
     `<option value = ${index + 1}> ${month}</option>`
 )
-document.getElementById("month").innerHTML = options
 
-document.getElementById("printCalendar").addEventListener("click", function() {printCalendar()}
-)
+
+options.forEach(function(mons){
+    document.getElementById("month").innerHTML += mons
+})
+
+//document.getElementById("month").innerHTML = options
+
+document.getElementById("printCalendar").addEventListener("click", printCalendar)
+
 
 
 function printCalendar(){
     document.getElementById("calendarDays").innerHTML = ""
     const monthNumber = document.getElementById("month").value
     const yearNumber = document.getElementById("year").value
-    const firstDay = document.getElementById(`${monthNumber}/1/${yearNumber}`)
-    const calDate = new Date(firstDay)
+    //const firstDay = document.getElementById(`${monthNumber}/1/${yearNumber}`)
+    const calDate = new Date(`${monthNumber}/1/${yearNumber}`)
 
 let days
 switch (monthNumber) {
@@ -40,8 +46,8 @@ do {
     document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div>`
 } while ( dt < days)
 
-const monthNames = today.toLocaleDateString('default', {month:'long'})
-const year = today.getFullYear()
+const monthName = calDate.toLocaleDateString('default', {month:'long'})
+const year = (calDate.getFullYear())
 document.querySelector('.calendarTitle').innerText = `${monthName} ${year}`
 
 const remainder = (7 - ((x + dt) % 7))
@@ -52,7 +58,12 @@ while ( y < remainder) {
 }
 }
 
-
+window.onload= function display(){
+    const monthNumber = document.getElementById("month").value = 1
+    const yearNumber = document.getElementById("year").value = 2021
+    
+}
+//i can get the date to prepopulate but I cant figure out how to make it actually display? can you point me in a direction?
 
 
 
