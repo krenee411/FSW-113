@@ -34,22 +34,23 @@ function updateInfo(data){
     var dataLabel2 = document.getElementById('dataLabel2')
     var dataValue1 = document.getElementById('dataValue1')
     var dataValue2 = document.getElementById('dataValue2')
-
-    if(queryType === "people"){
-        dataLabel1.innerText = 'Person Name:'
-        dataValue1.innerText = data.name
-        dataLabel2.innerText = 'Eye Color:'
-        dataValue2.innerText = data.height
-    }else if(queryType === "planets"){
-        dataLabel1.innerText = 'Planet Name:'
-        dataValue1.innerText = data.name
-        dataLabel2.innerText = 'Climate:'
-        dataValue2.innerText = data.climate
-    }else if(queryType === "starships"){
-        dataLabel1.innerText = 'Starship Name:'
-        dataValue1.innerText = data.name
-        dataLabel2.innerText = 'Crew:'
-        dataValue2.innerText = data.crew
+//console.log(dataLabel1, dataValue1, dataLabel2, dataValue2 )
+console.log(queryType)
+    if(queryType.value === "people"){
+        dataLabel1.innerHTML = 'Person Name:'
+        dataValue1.innerHTML = data.name
+        dataLabel2.innerHTML = 'Eye Color:'
+        dataValue2.innerHTML = data.eye_color
+    }else if(queryType.value === "planets"){
+        dataLabel1.innerHTML = 'Planet Name:'
+        dataValue1.innerHTML = data.name
+        dataLabel2.innerHTML = 'Climate:'
+        dataValue2.innerHTML = data.climate
+    }else if(queryType.value === "starships"){
+        dataLabel1.innerHTML = 'Starship Name:'
+        dataValue1.innerHTML = data.name
+        dataLabel2.innerHTML = 'Crew:'
+        dataValue2.innerHTML = data.crew
     }
 
 }
