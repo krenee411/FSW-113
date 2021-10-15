@@ -1,5 +1,6 @@
 .queryWrapper {
   display: flex;
+  justify-content: space-between;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2);
   border: black 3px solid;
