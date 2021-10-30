@@ -8,17 +8,19 @@ document.getElementById('submit').addEventListener('click',chkLang)
 function chkLang(langs) {
     let result = false
     var inputs = document.getElementsByTagName('input')
-    //console.log(inputs)
+    console.log(inputs)
     var items= []
     for(i= 0; i<inputs.length; i++){
        var area = inputs[i].value.split(',') 
        items= [...items,...area]
      
     }
-      //  console.log(items)
-     items.find(function(getIt){
+      //console.log(items)
+     items.find(function(lang){
+        
      if(items === `${lang}`){
-         return result  === false
+         return result  === true
+        
      }
     })
     
