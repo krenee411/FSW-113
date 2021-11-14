@@ -23,8 +23,7 @@ const parts = [
 ]
 
 // list of each part number and qty for check-off in the "detailsList" element
-function Items(){
-   var detailsList = document.getElementById("detailsList")
+var detailsList = document.getElementById("detailsList")
 
 parts.forEach(function(eachDetails){
 
@@ -40,88 +39,76 @@ parts.forEach(function(eachDetails){
         partItem.appendChild(partInfo)
        
 })
-}
-Items();
+
 // if parts requiring special handling exist (in aisle B3), list of items needing 
 // special packaging in the "specialPackaging" element, else remove element
 
-function Special(){
+
 let getSpec = document.getElementById('specialPackaging')
-var empty = true
-  parts.filter(function(info){ 
-  if(info.aisle === "B3"){
-     let spec = document.createElement('span')
-        spec.innerHTML = ("<br></br>" +"Item:" + info.partDescr + " / " + info.qty)
-        getSpec.appendChild(spec) 
-        empty= false 
-  }
-  if(empty){
-      getSpec.remove()
-  }
+
+let specialPackParts =  parts.filter(function(info){
+    return (info.aisle === "B3") 
 })
-}
- Special()
+    if(specialPackParts.length != 0){
+        specialPackParts.forEach(function(info){
+            let spec = document.createElement('span')
+            spec.innerHTML = ("<br></br>" +"Item:" + info.partDescr + " / " + info.qty)
+        getSpec.appendChild(spec)
+        })
+    }else{
+        getSpec.remove()
+    }
+
+
+
      
 // if hazardous parts exist (in aisle J4), let employee know in the "hazardousMaterials"
 // element and remind them to get gloves, else remove element
-function Haz(){
+
     var getHazMat = document.getElementById('hazardousMaterials')
-    var none= true
-parts.find(function(items){
-    if(items.aisle === "J4"){
-     let hazMat= document.createElement('p')
-            hazMat.textContent = ("GET GLOVES!!")
-            getHazMat.appendChild(hazMat)
-            none= false
-     
-}
+
+let hazParts = parts.find(function(items){
+    return items.aisle === "J4"
 })
-if(none){
+    if(hazParts){
+        getHazMat.textContent = ("GET GLOVES!!")
+    }else{
     items.remove()
 }
-}
-Haz()
+
    
 
 // if all items in the order are small parts (aisle H1), then let employee know that they should take 
 // a basket and go dirctly to aisle H1
-function Small(){
+
     let getSmall = document.getElementById('smallItemsOnly')
-    var none= true
-parts.every(function(item){
-    if(item.aisle === "H1"){
-     let smallItem = document.createElement('p')
-            smallItem.textContent = (item.partDescr + "Bring a Backet to aisle H1") 
-           getSmall.appendChild(smallItem)
-            none = false
-    }
+
+let smallParts =parts.every(function(item){
+    return item.aisle === "H1"
 })
-if(none){
-    getSmall.remove()
-}
-}
-Small()
+    if(smallParts){
+            smallItem.textContent = (item.partDescr + "Bring a Backet to aisle H1") 
+            getSmall.appendChild(smallItem)
+    }else{
+        getSmall.remove()
+    }
+
    
 // if there are large items (anthing in aisles S, T, or U), then let the employee know in the "forkiftNeeded"
 // element that they will need to reserve a forklift, else remove the element
-function Heavy(){
-    let getHeavy = document.getElementById('forkiftNeeded')
-    var none = true
-    parts.some(function(big){
-    if(big.aisle === "S"|"T"|"U"){
 
-        let forklift = document.createElement('p')
-         forklift.textContent = ("**FORKLIFT NEEDED** " + big.partDescr)
-         getHeavy.appendChild(forklift)
-         none = false
-}
+    let getHeavy = document.getElementById('forkiftNeeded')
+    
+    let heavyParts = parts.some(function(big){
+        return big.aisle === "S"|"T"|"U"
     })
-    if(none){
+    if(heavyParts){
+        forklift.textContent = ("**FORKLIFT NEEDED** " + big.partDescr)
+         getHeavy.appendChild(forklift)
+    }else{
         getHeavy.remove()
     }
-}
 
-    Heavy();
 // sum up the total number of parts and append that number to the text already in "totalItems" element
 
 /*
