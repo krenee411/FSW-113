@@ -6,7 +6,6 @@ const lang = 'JavaScript'
 document.getElementById('submit').addEventListener('click',chkLang)
 
 function chkLang(langs) {
-    let result = false
     var inputs = document.getElementsByTagName('input')
     console.log(inputs)
     var items= []
@@ -16,21 +15,17 @@ function chkLang(langs) {
      
     }
       //console.log(items)
-     items.find(function(lang){
-        
-     if(items === `${lang}`){
-         return result  === true
-        
-     }
+      let obj = document.querySelector('#TestResult')
+     let language = items.find(function(lang){
+        return (lang === "JavaScript")
     })
     
- 
-    // use an array method to check whether the user included 'JavaScript' in their
-    // list of languages
-    let obj = document.querySelector('#TestResult')
-    if (result) 
+    if (language) 
         obj.innerText = `Congratulations!\nYou know ${lang}.`
     else
         obj.innerText = `Sorry,\nyou don't know ${lang}.`
  
 }
+    // use an array method to check whether the user included 'JavaScript' in their
+    // list of languages
+    

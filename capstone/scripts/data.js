@@ -4,8 +4,6 @@
 var firstDrop = document.querySelector("#system") //first option dropdown
 var secondDrop = document.querySelector("#subSystem")// second option dropdown
 export var data;
-var first;
-var second;
 
 
 //const data = require("./../data.json")
